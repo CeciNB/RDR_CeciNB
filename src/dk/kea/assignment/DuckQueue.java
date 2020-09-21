@@ -1,9 +1,10 @@
 package dk.kea.assignment;
 
+import dk.kea.util.INode;
 import dk.kea.util.IQueue;
 
 import java.util.Iterator;
-import java.util.function.Consumer;
+import java.util.Queue;
 
 public class DuckQueue implements Iterable<Duck>, IQueue {
     private int length;
@@ -61,17 +62,24 @@ public class DuckQueue implements Iterable<Duck>, IQueue {
 
     @Override
     public String toString() {
+        if (isEmpty()) {
+            return " ";
+        }
 
-        return "Queue {" + duck.getData() + "}";
+        StringBuilder sb = new StringBuilder();
+        INode<Duck> next = front;
+
+        while(next != null){
+            sb.append(" ").append(next.getData());
+            next = next.getNext();
+        }
+
+        return sb.toString();
     }
 
     @Override
     public Iterator<Duck> iterator() {
-        return null;
+        return this.iterator();
     }
 
-    @Override
-    public void forEach(Consumer<? super Duck> action) {
-
-    }
 }
