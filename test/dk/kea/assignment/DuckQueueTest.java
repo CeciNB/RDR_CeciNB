@@ -22,7 +22,17 @@ class DuckQueueTest {
         duckQueue.enqueue(1);
         duckQueue.enqueue(2);
         //Object i = q.dequeue();
-        assertEquals("Queue {1, 2}",duckQueue.toString());
+        assertEquals("1 2",duckQueue.toString());
+    }
+
+    @Test
+    void toStringOneTwoThree()
+    {
+        duckQueue.enqueue(1);
+        duckQueue.enqueue(2);
+        duckQueue.enqueue(3);
+        //Object i = q.dequeue();
+        assertEquals("1 2 3",duckQueue.toString());
     }
 
     @Test
