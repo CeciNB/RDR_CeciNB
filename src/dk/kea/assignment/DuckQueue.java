@@ -1,0 +1,57 @@
+package dk.kea.assignment;
+
+import dk.kea.util.IQueue;
+
+public class DuckQueue implements IQueue {
+    private int length;
+    private Duck front;
+    private Duck rear;
+
+    public DuckQueue(){
+        length = 0;
+        front = null;
+    }
+
+    public void enqueue(int data){
+        Duck duck = new Duck(data);
+        if(isEmpty()){
+            front = duck;
+        }else {
+            rear.setNext(duck);
+        }
+        rear = duck;
+        length++;
+    }
+
+    public int dequeue() throws Exception {
+        int result;
+        if (isEmpty()) {
+            throw new Exception("Can't - Empty queue");
+        }else {
+            result = front.getData();
+            front = front.getNext();
+            length--;
+        }
+        return result;
+    }
+
+    public int first() throws Exception {
+        if(isEmpty()){
+            throw new Exception("No First - Empty queue");
+        }
+        return front.getData();
+    }
+
+    public  boolean isEmpty(){
+        return length == 0;
+    }
+
+    public int size(){
+        return length;
+    }
+
+    @Override
+    public String toString() {
+        return "Queue {" + front.getData() + ", " + rear.getData() + "}";
+    }
+}
