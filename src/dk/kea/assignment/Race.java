@@ -25,17 +25,19 @@ public class Race {
         }catch (Exception e){
             e.printStackTrace();
         }
+        System.out.println("Time Step: " + iteration);
         for (DuckQueue duckQueue : start){
             System.out.println(duckQueue);
         }
         System.out.println();
+        iteration++;
         startRace();
     }
 
     public void startRace(){
         gameList = new ArrayList<>();
         try{
-        for (int i = 1; i < start.size() - 1; i++) {
+        for (int i = 0; i < start.size() - 1; i++) {
             DuckQueue myQueue = new DuckQueue();
             for (int j = 0; j < start.size() - 1; j++) {
                 Random rand = new Random();
@@ -55,7 +57,7 @@ public class Race {
             System.out.println(duckQueue);
         }
         System.out.println();
-        if (start.size() >= 1) {
+        if (gameList.size() > 1) {
             start = gameList;
             iteration++;
             startRace();
