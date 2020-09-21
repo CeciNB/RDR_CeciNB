@@ -2,32 +2,38 @@ package dk.kea.assignment;
 
 import dk.kea.util.IQueue;
 
-public class DuckQueue implements IQueue {
+import java.util.Iterator;
+import java.util.function.Consumer;
+
+public class DuckQueue implements Iterable<Duck>, IQueue {
     private int length;
+    private Duck duck;
     private Duck front;
     private Duck rear;
 
-    public DuckQueue(){
+    public DuckQueue() {
         length = 0;
         front = null;
     }
 
-    public void enqueue(int data){
-        Duck duck = new Duck(data);
-        if(isEmpty()){
+    @Override
+    public void enqueue(int data) {
+        this.duck = new Duck(data);
+        if (isEmpty()) {
             front = duck;
-        }else {
+        } else {
             rear.setNext(duck);
         }
         rear = duck;
         length++;
     }
 
+    @Override
     public int dequeue() throws Exception {
         int result;
         if (isEmpty()) {
             throw new Exception("Can't - Empty queue");
-        }else {
+        } else {
             result = front.getData();
             front = front.getNext();
             length--;
@@ -35,23 +41,37 @@ public class DuckQueue implements IQueue {
         return result;
     }
 
+    @Override
     public int first() throws Exception {
-        if(isEmpty()){
+        if (isEmpty()) {
             throw new Exception("No First - Empty queue");
         }
         return front.getData();
     }
 
-    public  boolean isEmpty(){
+    @Override
+    public boolean isEmpty() {
         return length == 0;
     }
 
-    public int size(){
+    @Override
+    public int size() {
         return length;
     }
 
     @Override
     public String toString() {
-        return "Queue {" + front.getData() + ", " + rear.getData() + "}";
+
+        return "Queue {" + duck.getData() + "}";
+    }
+
+    @Override
+    public Iterator<Duck> iterator() {
+        return null;
+    }
+
+    @Override
+    public void forEach(Consumer<? super Duck> action) {
+
     }
 }
