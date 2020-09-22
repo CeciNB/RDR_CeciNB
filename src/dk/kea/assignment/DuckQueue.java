@@ -63,18 +63,18 @@ public class DuckQueue implements Iterable<Duck>, IQueue {
     @Override
     public String toString() {
         if (isEmpty()) {
-            return " ";
+            return "{ }";
         }
-
         StringBuilder sb = new StringBuilder();
         INode<Duck> next = front;
-
+        sb.append(next.getData());
+        next = next.getNext();
         while(next != null){
-            sb.append(" ").append(next.getData());
+            sb.append(", ").append(next.getData());
             next = next.getNext();
         }
 
-        return sb.toString();
+        return "{" + sb.toString() + "}";
     }
 
     @Override
