@@ -19,13 +19,9 @@ public class Node implements INode<Node> {
     public Node getNext() {
         return nextNode;
     }
+
     @Override
     public void setNext(Node next) {
         this.nextNode = nextNode;
-    }
-
-    @Override
-    public String toString() {
-        return "Node{"+ data +"}";
     }
 }

@@ -2,9 +2,7 @@ package dk.kea.assignment;
 
 import dk.kea.util.INode;
 import dk.kea.util.IQueue;
-
 import java.util.Iterator;
-import java.util.Queue;
 
 public class DuckQueue implements Iterable<Duck>, IQueue {
     private int length;

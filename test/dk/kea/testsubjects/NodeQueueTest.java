@@ -68,6 +68,7 @@ class NodeQueueTest {
         nodeQueue.enqueue(2);
         String actual = null;
         String expected = "Can't - Empty queue";
+
         int result = 0;
         try {
             result = nodeQueue.dequeue();

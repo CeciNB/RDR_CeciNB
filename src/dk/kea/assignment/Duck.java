@@ -24,9 +24,4 @@ public class Duck implements INode<Duck> {
     public void setNext(Duck next) {
         this.nextDuck = next;
     }
-
-    @Override
-    public String toString() {
-        return "Data{"+ data +"}";
-    }
 }

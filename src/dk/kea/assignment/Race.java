@@ -3,30 +3,27 @@ package dk.kea.assignment;
 import java.util.*;
 
 public class Race {
-    private ArrayList<DuckQueue> start;
-    private ArrayList<DuckQueue> gameList;
-    private int timeStep;
+    private ArrayList<DuckQueue> startList;
     private int iteration;
 
     public Race(int number) {
-        timeStep = number;
         iteration = 1;
-        start = new ArrayList<>();
+        startList = new ArrayList<>();
         int count = 1;
         try{
-        for (int i = 0; i < timeStep; i++){
+        for (int i = 0; i < number; i++){
             DuckQueue myQueue = new DuckQueue();
-            for (int j = 0; j < timeStep; j++){
+            for (int j = 0; j < number; j++){
                 myQueue.enqueue(count);
                 count++;
             }
-            start.add(myQueue);
+            startList.add(myQueue);
         }
         }catch (Exception e){
             e.printStackTrace();
         }
         System.out.println("Time Step: " + iteration);
-        for (DuckQueue duckQueue : start){
+        for (DuckQueue duckQueue : startList){
             System.out.println(duckQueue);
         }
         System.out.println();
@@ -35,30 +32,30 @@ public class Race {
     }
 
     public void startRace(){
-        gameList = new ArrayList<>();
+        ArrayList<DuckQueue> tempList = new ArrayList<>();
         try{
-        for (int i = 0; i < start.size() - 1; i++) {
+        for (int i = 0; i < startList.size() - 1; i++) {
             DuckQueue myQueue = new DuckQueue();
-            for (int j = 0; j < start.size() - 1; j++) {
+            for (int j = 0; j < startList.size() - 1; j++) {
                 Random rand = new Random();
-                int randNum = rand.nextInt(start.size());
-                while (start.get(randNum).isEmpty()) {
-                    randNum = rand.nextInt(start.size());
+                int randNum = rand.nextInt(startList.size());
+                while (startList.get(randNum).isEmpty()) {
+                    randNum = rand.nextInt(startList.size());
                 }
-                myQueue.enqueue(start.get(randNum).dequeue());
+                myQueue.enqueue(startList.get(randNum).dequeue());
             }
-            gameList.add(myQueue);
+            tempList.add(myQueue);
         }}
         catch (Exception e){
             e.printStackTrace();
         }
         System.out.println("Time Step: " + iteration);
-        for (DuckQueue duckQueue : gameList) {
+        for (DuckQueue duckQueue : tempList) {
             System.out.println(duckQueue);
         }
         System.out.println();
-        if (gameList.size() > 1) {
-            start = gameList;
+        if (tempList.size() > 1) {
+            startList = tempList;
             iteration++;
             startRace();
         }
